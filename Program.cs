@@ -2,6 +2,7 @@
 using System.Numerics;
 using System.Xml.Linq;
 using Tecnico;
+using Tecnico.Controllers;
 using Tecnico.Enums;
 using Tecnico.Models;
 using Tecnico.Repositories;

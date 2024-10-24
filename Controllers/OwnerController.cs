@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Tecnico.Models;
 using Tecnico.Services;
 
-namespace Tecnico
+namespace Tecnico.Controllers
 {
     internal class OwnerController
     {

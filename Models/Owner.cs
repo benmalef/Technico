@@ -7,15 +7,15 @@ using Tecnico.Enums;
 
 namespace Tecnico.Models;
 
-public record Owner(
-
-     int VAT,
-     int ID,
-     string Name,
-     string Surname,
-     string Address,
-     int Phone,
-     string Email,
-     string Password,
-     Users TypeOfUser
-);
+public class Owner
+{
+    public int VAT { get; set; }
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public string Address { get; set; }
+    public int Phone { get; set; }
+    public string Email { get; set; }
+    private string Password { get; set; } 
+    public Users TypeOfUser { get; set; }
+}
