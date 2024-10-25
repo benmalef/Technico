@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tecnico.Models;
-using Tecnico.Services;
+using Technico.Models;
+using Technico.Services;
 
-namespace Tecnico.Controllers
+namespace Technico.Controllers
 {
     internal class OwnerController
     {
@@ -21,7 +21,7 @@ namespace Tecnico.Controllers
             _ownerService.createOwner(owner);
         }
 
-        public Owner findOwnerByID(int id)
+        public Owner findOwnerByID(Guid id)
         {
             var owner = _ownerService.findOwnerById(id);
             if (owner == null)

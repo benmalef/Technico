@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tecnico.Enums;
+namespace Technico.Enums;
 
 public enum StatusOfRepair
 {

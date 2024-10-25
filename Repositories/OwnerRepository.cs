@@ -4,32 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using Tecnico.Models;
+using Technico.Models;
 
-
-namespace Tecnico.Repositories
+namespace Technico.Repositories
 {
-     class OwnerRepository : IOwnerRepository
+    class OwnerRepository : IOwnerRepository
     {
         private readonly AppDbContext context;
-        public OwnerRepository(AppDbContext context) {
-         this.context = context;   
+        public OwnerRepository(AppDbContext context)
+        {
+            this.context = context;
         }
 
-        public bool Delete(int ownerID)
+        public bool Delete(Guid ownerId)
         {
-           //return context.Owners.Remove(ownerID);
-           return true;
+            var owner = context.Owners.Single(owner => ownerId == owner.Id);
+            context.Owners.Remove(owner);
+            context.SaveChanges();
+            return true;
         }
 
-        public void Dispose()
+        public Owner? GetOwnerByID(Guid ownerId)
         {
-            throw new NotImplementedException();
+            return context.Owners.FirstOrDefault(owner => ownerId == owner.Id);
         }
-
-        public Owner GetOwnerByID(int ownerID)
+        public Owner? GetOwnerByVAT(int VAT)
         {
-            return context.Owners.Single(owner => ownerID == owner.ID);
+            try
+            {
+                return context.Owners.Single(owner => VAT == owner.VAT);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public IEnumerable<Owner> GetOwners()
@@ -40,12 +48,10 @@ namespace Tecnico.Repositories
         public void InsertOwner(Owner owner)
         {
             context.Owners.Add(owner);
+            context.SaveChanges();
         }
 
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public void UpdateOwner(Owner owner)
         {

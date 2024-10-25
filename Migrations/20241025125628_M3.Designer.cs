@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Technico;
 
 #nullable disable
 
 namespace Technico.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241025125628_M3")]
+    partial class M3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Technico.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Technico.Models.Item", b =>
+            modelBuilder.Entity("Tecnico.Models.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,9 +33,6 @@ namespace Technico.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("E9")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uniqueidentifier");
@@ -51,7 +50,7 @@ namespace Technico.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Technico.Models.Owner", b =>
+            modelBuilder.Entity("Tecnico.Models.Owner", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +89,7 @@ namespace Technico.Migrations
                     b.ToTable("Owners");
                 });
 
-            modelBuilder.Entity("Technico.Models.Repair", b =>
+            modelBuilder.Entity("Tecnico.Models.Repair", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,9 +126,9 @@ namespace Technico.Migrations
                     b.ToTable("Repairs");
                 });
 
-            modelBuilder.Entity("Technico.Models.Item", b =>
+            modelBuilder.Entity("Tecnico.Models.Item", b =>
                 {
-                    b.HasOne("Technico.Models.Owner", "Owner")
+                    b.HasOne("Tecnico.Models.Owner", "Owner")
                         .WithMany("Items")
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -138,21 +137,21 @@ namespace Technico.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("Technico.Models.Repair", b =>
+            modelBuilder.Entity("Tecnico.Models.Repair", b =>
                 {
-                    b.HasOne("Technico.Models.Item", "Item")
+                    b.HasOne("Tecnico.Models.Item", "Item")
                         .WithMany("Repairs")
                         .HasForeignKey("ItemId");
 
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Technico.Models.Item", b =>
+            modelBuilder.Entity("Tecnico.Models.Item", b =>
                 {
                     b.Navigation("Repairs");
                 });
 
-            modelBuilder.Entity("Technico.Models.Owner", b =>
+            modelBuilder.Entity("Tecnico.Models.Owner", b =>
                 {
                     b.Navigation("Items");
                 });

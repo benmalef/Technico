@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tecnico.Enums;
+namespace Technico.Enums;
 
 // set the types of the users 
 public enum Users

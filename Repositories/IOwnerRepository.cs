@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tecnico.Models;
+using Technico.Models;
 
-namespace Tecnico.Repositories;
+namespace Technico.Repositories;
 
 
-public interface IOwnerRepository : IDisposable
+public interface IOwnerRepository
 {
     IEnumerable<Owner> GetOwners();
-    Owner GetOwnerByID(int ownerId);
+    Owner? GetOwnerByID(Guid ownerId);
     void InsertOwner(Owner owner);
-    bool Delete(int onwerID);
+    bool Delete(Guid ownerId);
     void UpdateOwner(Owner owner);
-    void Save();
+    public Owner? GetOwnerByVAT(int VAT);
 }
 

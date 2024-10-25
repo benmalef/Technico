@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tecnico.Services
+namespace Technico.Services
 {
     internal class ItemService
     {
