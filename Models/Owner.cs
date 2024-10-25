@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tecnico.Enums;
-
+using Microsoft.EntityFrameworkCore;
 namespace Tecnico.Models;
 
 public class Owner

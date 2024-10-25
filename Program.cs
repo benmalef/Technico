@@ -27,17 +27,9 @@ OwnerController ownerController = new OwnerController(ownerService);
 //            new User { VAT = 123456, ID = 10, Name = "Hank", Surname = "Lopez", Address = "707 Poplar St", Phone = 1234567891, Email = "hank.lopez@example.com", Password = "pass012", TypeOfUser = Users.Admin }
 
 var ben = new Owner
-(
-    11,
-     1,
-     "John",
-     "Doe",
-     "123 Main St",
-     1234567890,
-     "john.doe@example.com",
-     "pass123",
-     Users.Admin
-);
+{
+ 
+};
 ownerController.create(
     ben
 );

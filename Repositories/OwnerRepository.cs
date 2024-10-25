@@ -18,7 +18,8 @@ namespace Tecnico.Repositories
 
         public bool Delete(int ownerID)
         {
-           return context.Owners.Remove(GetOwnerByID(ownerID));
+           //return context.Owners.Remove(ownerID);
+           return true;
         }
 
         public void Dispose()
