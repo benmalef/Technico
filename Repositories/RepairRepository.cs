@@ -1,10 +1,4 @@
-﻿using java.security.acl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Technico.Models;
+﻿using Technico.Models;
 
 namespace Technico.Repositories
 {
@@ -40,7 +34,8 @@ namespace Technico.Repositories
 
         public void UpdateRepair(Repair repair)
         {
-            throw new NotImplementedException();
+            context.Repairs.Update(repair);
+            context.SaveChanges();
         }
     }
 }

@@ -4,6 +4,7 @@ using Technico.Enums;
 using Technico.Services;
 using Technico.Models;
 using Technico.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -11,6 +12,13 @@ AppDbContext appDbContext = new();
 OwnerRepository ownerRepository = new OwnerRepository(appDbContext);
 OwnerService ownerService = new OwnerService(ownerRepository);
 OwnerController ownerController = new OwnerController(ownerService);
+
+
+ItemRepository itemRepository = new ItemRepository(appDbContext);
+ItemService itemService = new ItemService(itemRepository);
+
+IRepairRepository repairRepository = new RepairRepository(appDbContext);
+RepairService repairService = new RepairService(repairRepository);
 
 
 ////new  { VAT = 123456, ID = 1, Name = "John", Surname = "Doe", Address = "123 Main St", Phone = 1234567890, Email = "john.doe@example.com", Password = "pass123", TypeOfUser = Users.Admin },
@@ -27,7 +35,7 @@ OwnerController ownerController = new OwnerController(ownerService);
 var ben = new Owner
 {
     VAT = 234567,
-    Name = "Jane",
+    Name = "Jaasdasne",
     Surname = "Smith",
     Address = "456 Elm St",
     Phone = 234567801,
@@ -37,17 +45,40 @@ var ben = new Owner
 };
 
 
-ownerController.create(
-    ben
-);
+//ownerController.create(
+//    ben
+//);
+var item = new Item
+{
+    Address = ben.Address,
+    Owner = ben,
+    E9 = 1234234,
+    TypeOfItem = TypeOfItem.Detached,
+    Repairs = null,
+    YearOfConstruction = 2010,
+};
 
+//public DateTime Date { get; set; }
+//public TypeOfRepair TypeOfRepair { get; set; }
+//public string? Description { get; set; }
+//public string? Address { get; set; }
+//[Precision(8, 2)]
+//public decimal Cost { get; set; }
+//public StatusOfRepair Status { get; set; }
+//public Item? Item { get; set; }
+
+var repair = new Repair
+{
+    Date = DateTime.Now,
+    TypeOfRepair = TypeOfRepair.Painting,
+    Description = "Pumb",
+    Address = "Chania",
+    Cost = 100m,
+    Status = StatusOfRepair.Pending,
+    Item = item,
+};
+
+repairService.createRepair(repair);
 ownerController.display();
-//ownerController.create(
-//    ben
-//);
-//ownerController.create(
-//    ben
-//);
-//ownerController.create(
-//    ben
-//);
+//itemService.create(item);
+//ownerController.display();

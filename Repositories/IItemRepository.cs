@@ -9,10 +9,10 @@ namespace Technico.Repositories
 {
     internal interface IItemRepository
     {
-        IEnumerable<Item> GetItem();
+        IEnumerable<Item> GetItems();
         Item? GetItemByID(Guid itemId);
         void InsertItem(Item item);
-        bool Delete(Guid itemId);
+        bool DeleteById(Guid itemId);
         void UpdateItem(Item item);
         
     }

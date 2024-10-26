@@ -18,7 +18,7 @@ namespace Technico.Controllers
 
         public void create(Owner owner)
         {
-            _ownerService.createOwner(owner);
+            //_ownerService.createOwner(owner);
         }
 
         public Owner findOwnerByID(Guid id)
@@ -34,13 +34,14 @@ namespace Technico.Controllers
         }
         public List<Owner> GetOwners()
         {
-            return _ownerService.get_owners();
+            return _ownerService.getAllOwners();
         }
         public void display()
         {
             foreach (var owner in GetOwners())
             {
-                Console.WriteLine(owner);
+                Console.WriteLine(owner.Items);
+
             }
         }
 

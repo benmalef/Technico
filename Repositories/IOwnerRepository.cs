@@ -15,6 +15,5 @@ public interface IOwnerRepository
     void InsertOwner(Owner owner);
     bool Delete(Guid ownerId);
     void UpdateOwner(Owner owner);
-    public Owner? GetOwnerByVAT(int VAT);
 }
 

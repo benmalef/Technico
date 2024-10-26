@@ -14,7 +14,7 @@ namespace Technico.Repositories
         public ItemRepository(AppDbContext context) {
             this.context = context;
         }
-        public bool Delete(Guid itemId)
+        public bool DeleteById(Guid itemId)
         {
             var item = context.Owners.Single(item => itemId == item.Id);
             context.Owners.Remove(item);
@@ -22,7 +22,7 @@ namespace Technico.Repositories
             return true;
         }
 
-        public IEnumerable<Item> GetItem()
+        public IEnumerable<Item> GetItems()
         {
             return context.Items;
         }
@@ -40,7 +40,8 @@ namespace Technico.Repositories
 
         public void UpdateItem(Item item)
         {
-            throw new NotImplementedException();
+            context.Items.Update(item);
+            context.SaveChanges();
         }
     }
 }

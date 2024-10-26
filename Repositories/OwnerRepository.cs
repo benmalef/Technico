@@ -24,20 +24,9 @@ namespace Technico.Repositories
             return true;
         }
 
-        public Owner? GetOwnerByID(Guid ownerId)
+        public Owner GetOwnerByID(Guid ownerId)
         {
-            return context.Owners.FirstOrDefault(owner => ownerId == owner.Id);
-        }
-        public Owner? GetOwnerByVAT(int VAT)
-        {
-            try
-            {
-                return context.Owners.Single(owner => VAT == owner.VAT);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            return context.Owners.Single(owner => ownerId == owner.Id);
         }
 
         public IEnumerable<Owner> GetOwners()
@@ -55,9 +44,8 @@ namespace Technico.Repositories
 
         public void UpdateOwner(Owner owner)
         {
-            //var findOwner = GetOwnerByID(owner.ID);
-            //if (findOwner != null && findOwner != null) {
-            //    findOwner.Phone = owner.Phone;
+            context.Owners.Update(owner);
+            context.SaveChanges();
 
         }
     }
