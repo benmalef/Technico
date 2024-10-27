@@ -16,34 +16,35 @@ namespace Technico.Controllers
             _ownerService = ownerService;
         }
 
-        public void create(Owner owner)
-        {
-            _ownerService.createOwner(owner);
-        }
+        //    public void create(Owner owner)
+        //    {
+        //        _ownerService.createOwner(owner);
+        //    }
 
-        public Owner findOwnerByID(Guid id)
-        {
-            var owner = _ownerService.findOwnerById(id);
-            if (owner == null)
-            {
-                Console.WriteLine("Not Found");
-                return null;
-            }
-            return owner;
+        //    public Owner findOwnerByID(Guid id)
+        //    {
+        //        var owner = _ownerService.findOwnerById(id);
+        //        if (owner == null)
+        //        {
+        //            Console.WriteLine("Not Found");
+        //            return null;
+        //        }
+        //        return owner;
 
-        }
-        public List<Owner> GetOwners()
-        {
-            return _ownerService.getAllOwners();
-        }
-        public void display()
-        {
-           var repairs =  _ownerService.displayOwnerRepairsByVAT(1133);
-            foreach (var repair in repairs)
-            {
-                Console.WriteLine(repair.ToString());
-            }
-        }
+        //    }
+        //    public List<Owner> GetOwners()
+        //    {
+        //        return _ownerService.GetAllOwners();
+        //    }
+        //    public void display()
+        //    {
+        //       var repairs =  _ownerService.GetOwnerRepairsByVAT(1133);
+        //        foreach (var repair in repairs)
+        //        {
+        //            Console.WriteLine(repair.ToString());
+        //        }
+        //    }
 
+        //}
     }
 }

@@ -12,7 +12,7 @@ using Technico.Enums;
 using sun.security.util;
 namespace Technico.Services;
 
-public class OwnerService
+public class OwnerService : IOwnerService
 {
     private readonly IOwnerRepository ownerRepository;
     private readonly ItemService itemService;
@@ -25,9 +25,10 @@ public class OwnerService
 
     public void CreateOwner(Owner owner)
     {
-                
-        if (GetOwnerByVAT(owner.VAT) == null) { 
-        ownerRepository.InsertOwner(owner);
+
+        if (GetOwnerByVAT(owner.VAT) == null)
+        {
+            ownerRepository.InsertOwner(owner);
         }
     }
     public bool DeleteOwnerById(Guid id)
@@ -35,12 +36,13 @@ public class OwnerService
         return ownerRepository.Delete(id);
     }
 
-    public void UpdateOwner(int VAT, 
+    public void UpdateOwner(int VAT,
                             string? name = null, string? surname = null,
                             string? address = null, int? phone = null,
-                            string? email = null, string? password = null)
+                            string? email = null, string? password = null,
+                            int? newVAT = null)
     {
-  
+
         var owner = GetOwnerByVAT(VAT);
         if (owner != null)
         {
@@ -61,6 +63,10 @@ public class OwnerService
 
             if (!string.IsNullOrEmpty(password))
                 owner.Password = password;
+
+            if (newVAT.HasValue)
+                owner.VAT = (int)newVAT;
+
             ownerRepository.UpdateOwner(owner);
         }
     }
@@ -74,7 +80,7 @@ public class OwnerService
         return ownerRepository?.GetOwnerByID(id);
     }
 
-  
+
     public List<Item>? GetOwnerItemsById(Guid id)
     {
         return ownerRepository?.GetOwnerByID(id)?.Items;

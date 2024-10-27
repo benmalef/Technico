@@ -23,50 +23,49 @@ OwnerService ownerService = new OwnerService(ownerRepository, itemService);
 OwnerController ownerController = new OwnerController(ownerService);
 
 
-//var owner = new Owner
-//{
-//    VAT = 1133,
-//    Name = "Ben",
-//    Surname = "Smith",
-//    Address = "",
-//    Phone = 234567801,
-//    Email = "jane.smith@example.com",
-//    Password = "pass234",
-//    TypeOfUser = Users.Simple
-//};
+var owner = new Owner
+{
+    VAT = 1133,
+    Name = "Takis",
+    Surname = "Smith",
+    Address = "",
+    Phone = 234567801,
+    Email = "jane.smith@example.com",
+    Password = "pass234",
+    TypeOfUser = Users.Simple
+};
 
 ////ownerController.create(
 ////    owner
 ////);
 
-
+ownerService.UpdateOwner(1133, name: "Lambros",surname:"lll",newVAT:432432); 
 //var fake_owner = ownerService.GetOwnerByVAT(owner.VAT);
 
 //var item = new Item
 //{
 //    Address = fake_owner.Address,
-//    Owner = fake_owner,
 //    E9 = 5555,
 //    TypeOfItem = TypeOfItem.Detached,
 //    YearOfConstruction = 2010,
 //};
 
-////itemService.create(item);
+//itemService.create(item);
 
-var fake_item = itemService.getItemByE9(5555);
+//var fake_item = itemService.getItemByE9(5555);
 
-var repair = new Repair
-{
-    Date = DateTime.Now,
-    TypeOfRepair = TypeOfRepair.Painting,
-    Description = "Pumb",
-    Address = "Chania",
-    Cost = 100m,
-    Status = StatusOfRepair.Pending,
-    Item = fake_item,
-};
-repairService.createRepair(repair);
-ownerController.display();
+//var repair = new Repair
+//{
+//    Date = DateTime.Now,
+//    TypeOfRepair = TypeOfRepair.Painting,
+//    Description = "Pumb",
+//    Address = "Chania",
+//    Cost = 100m,
+//    Status = StatusOfRepair.Pending,
+//    Item = fake_item,
+//};
+//repairService.createRepair(repair);
+//ownerController.display();
 
 ////itemService.create(item);
 ////ownerController.display();
