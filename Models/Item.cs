@@ -13,7 +13,7 @@ public class Item
     public int E9 { get; set; }
     public string? Address { get; set; }
     public int YearOfConstruction { get; set; }
-    public  Owner Owner { get; set; }
+    public required  Owner Owner { get; set; }
 
     public TypeOfItem TypeOfItem { get; set; }
     public  List<Repair>? Repairs { get; set; }
