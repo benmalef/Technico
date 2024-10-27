@@ -57,12 +57,10 @@ namespace Technico.Repositories
         public List<Repair>? GetOwnerRepairs(Guid ownerId)
         {
             return context.Owners
-                .Where(o => o.Id == ownerId)                       // Filter by the specific owner ID
-                .Include(o => o.Items)                             // Include items related to the owner
-                 .ThenInclude(i => i.Repairs)                       // Then include repairs for each item
+                .Where(o => o.Id == ownerId)                      
+                .Include(o => o.Items)                             
+                 .ThenInclude(i => i.Repairs)                       
                   .SelectMany(o => o.Items.SelectMany(i => i.Repairs)).ToList();
-
-
         }
     }
 }
