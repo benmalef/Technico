@@ -25,7 +25,7 @@ OwnerController ownerController = new OwnerController(ownerService);
 
 var owner = new Owner
 {
-    VAT = 1133,
+    VAT = "1133",
     Name = "Takis",
     Surname = "Smith",
     Address = "",
@@ -39,7 +39,7 @@ var owner = new Owner
 ////    owner
 ////);
 
-ownerService.UpdateOwner(1133, name: "Lambros",surname:"lll",newVAT:432432); 
+ownerService.UpdateOwner("432432", name: "Ben",surname:"lll",newVAT:"432432"); 
 //var fake_owner = ownerService.GetOwnerByVAT(owner.VAT);
 
 //var item = new Item

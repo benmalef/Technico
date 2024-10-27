@@ -8,10 +8,10 @@ namespace Technico.Services
         bool DeleteOwnerById(Guid id);
         List<Owner> GetAllOwners();
         Owner? GetOwnerById(Guid id);
-        Owner? GetOwnerByVAT(int VAT);
+        Owner? GetOwnerByVAT(string VAT);
         List<Item>? GetOwnerItemsById(Guid id);
-        List<Item>? GetOwnerItemsByVAT(int VAT);
-        List<Repair>? GetOwnerRepairsByVAT(int VAT);
-        void UpdateOwner(int VAT, string? name = null, string? surname = null, string? address = null, int? phone = null, string? email = null, string? password = null, int? newVAT = null);
+        List<Item>? GetOwnerItemsByVAT(string VAT);
+        List<Repair>? GetOwnerRepairsByVAT(string VAT);
+        void UpdateOwner(string VAT, string? name = null, string? surname = null, string? address = null, int? phone = null, string? email = null, string? password = null, string? newVAT = null);
     }
 }

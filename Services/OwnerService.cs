@@ -25,10 +25,12 @@ public class OwnerService : IOwnerService
 
     public void CreateOwner(Owner owner)
     {
-
-        if (GetOwnerByVAT(owner.VAT) == null)
+        if (!string.IsNullOrEmpty(owner.VAT))
         {
-            ownerRepository.InsertOwner(owner);
+            if (GetOwnerByVAT(owner.VAT) == null)
+            {
+                ownerRepository.InsertOwner(owner);
+            }
         }
     }
     public bool DeleteOwnerById(Guid id)
@@ -36,11 +38,11 @@ public class OwnerService : IOwnerService
         return ownerRepository.Delete(id);
     }
 
-    public void UpdateOwner(int VAT,
+    public void UpdateOwner(string VAT,
                             string? name = null, string? surname = null,
                             string? address = null, int? phone = null,
                             string? email = null, string? password = null,
-                            int? newVAT = null)
+                            string? newVAT = null)
     {
 
         var owner = GetOwnerByVAT(VAT);
@@ -64,8 +66,8 @@ public class OwnerService : IOwnerService
             if (!string.IsNullOrEmpty(password))
                 owner.Password = password;
 
-            if (newVAT.HasValue)
-                owner.VAT = (int)newVAT;
+            if (!string.IsNullOrEmpty(newVAT))
+                owner.VAT = newVAT;
 
             ownerRepository.UpdateOwner(owner);
         }
@@ -87,7 +89,7 @@ public class OwnerService : IOwnerService
     }
 
     //VAT
-    public Owner? GetOwnerByVAT(int VAT)
+    public Owner? GetOwnerByVAT(string VAT)
     {
         try
         {
@@ -99,7 +101,7 @@ public class OwnerService : IOwnerService
         }
     }
 
-    public List<Item>? GetOwnerItemsByVAT(int VAT)
+    public List<Item>? GetOwnerItemsByVAT(string VAT)
     {
         var owner = GetOwnerByVAT(VAT);
         if (owner != null)
@@ -110,7 +112,7 @@ public class OwnerService : IOwnerService
 
     }
 
-    public List<Repair>? GetOwnerRepairsByVAT(int VAT)
+    public List<Repair>? GetOwnerRepairsByVAT(string VAT)
     {
 
         var owner = GetOwnerByVAT(VAT);

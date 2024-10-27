@@ -9,7 +9,7 @@ namespace Technico.Models;
 
 public class Owner
 {
-    public required int VAT { get; set; }
+    public required string VAT { get; set; }
     public Guid Id { get; set; }
     public string? Name { get; set; }
     public string? Surname { get; set; }
