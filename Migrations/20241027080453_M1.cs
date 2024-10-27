@@ -22,6 +22,7 @@ namespace Technico.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeOfUser = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -34,7 +35,8 @@ namespace Technico.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    E9 = table.Column<int>(type: "int", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
                     OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TypeOfItem = table.Column<int>(type: "int", nullable: false)
@@ -57,9 +59,9 @@ namespace Technico.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TypeOfRepair = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cost = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -74,9 +76,21 @@ namespace Technico.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_E9",
+                table: "Items",
+                column: "E9",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_OwnerId",
                 table: "Items",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Owners_VAT",
+                table: "Owners",
+                column: "VAT",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Repairs_ItemId",

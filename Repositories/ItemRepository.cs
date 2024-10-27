@@ -6,42 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using Technico.Models;
 
-namespace Technico.Repositories
+namespace Technico.Repositories;
+
+public class ItemRepository : IItemRepository
 {
-    internal class ItemRepository : IItemRepository
+    private readonly AppDbContext context;
+    public ItemRepository(AppDbContext context) {
+        this.context = context;
+    }
+    public  bool DeleteById(Guid itemId)
     {
-        private readonly AppDbContext context;
-        public ItemRepository(AppDbContext context) {
-            this.context = context;
-        }
-        public bool DeleteById(Guid itemId)
-        {
-            var item = context.Owners.Single(item => itemId == item.Id);
-            context.Owners.Remove(item);
-            context.SaveChanges();
-            return true;
-        }
+        var item =  context.Items.Single(item => itemId == item.Id);
+        context.Items.Remove(item);
+        context.SaveChanges();
+        return true;
+    }
 
-        public IEnumerable<Item> GetItems()
-        {
-            return context.Items;
-        }
+    public IEnumerable<Item> GetItems()
+    {
+        return context.Items;
+    }
 
-        public Item? GetItemByID(Guid itemId)
-        {
-            return context.Items.FirstOrDefault(item => itemId == item.Id);
-        }
+    public Item? GetItemByID(Guid itemId)
+    {
+        return context.Items.FirstOrDefault(item => itemId == item.Id);
+    }
 
-        public void InsertItem(Item item)
-        {
-            context.Items.Add(item);
-            context.SaveChanges();
-        }
+    public void InsertItem(Item item)
+    {
+        context.Items.Add(item);
+        context.SaveChanges();
+    }
 
-        public void UpdateItem(Item item)
-        {
-            context.Items.Update(item);
-            context.SaveChanges();
-        }
+    public void UpdateItem(Item item)
+    {
+        context.Items.Update(item);
+        context.SaveChanges();
     }
 }

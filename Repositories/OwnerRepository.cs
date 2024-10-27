@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Technico.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Technico.Repositories
 {
-    class OwnerRepository : IOwnerRepository
+  public  class OwnerRepository : IOwnerRepository
     {
         private readonly AppDbContext context;
         public OwnerRepository(AppDbContext context)
@@ -40,12 +41,27 @@ namespace Technico.Repositories
             context.SaveChanges();
         }
 
-
-
         public void UpdateOwner(Owner owner)
         {
             context.Owners.Update(owner);
             context.SaveChanges();
+
+        }
+        public Owner? GetOwnerItems(Guid ownerId)
+        {
+            return context.Owners
+                .Include(owner => owner.Items)
+                .FirstOrDefault(owner => owner.Id == ownerId);
+        }
+
+        public List<Repair>? GetOwnerRepairs(Guid ownerId)
+        {
+            return context.Owners
+                .Where(o => o.Id == ownerId)                       // Filter by the specific owner ID
+                .Include(o => o.Items)                             // Include items related to the owner
+                 .ThenInclude(i => i.Repairs)                       // Then include repairs for each item
+                  .SelectMany(o => o.Items.SelectMany(i => i.Repairs)).ToList();
+
 
         }
     }

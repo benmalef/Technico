@@ -29,7 +29,6 @@ namespace Technico.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("E9")
@@ -45,6 +44,9 @@ namespace Technico.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("E9")
+                        .IsUnique();
 
                     b.HasIndex("OwnerId");
 
@@ -87,6 +89,9 @@ namespace Technico.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("VAT")
+                        .IsUnique();
+
                     b.ToTable("Owners");
                 });
 
@@ -97,7 +102,6 @@ namespace Technico.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Cost")
@@ -108,7 +112,6 @@ namespace Technico.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ItemId")

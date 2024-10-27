@@ -7,7 +7,7 @@ using Technico.Models;
 
 namespace Technico.Repositories
 {
-    internal interface IItemRepository
+    public interface IItemRepository
     {
         IEnumerable<Item> GetItems();
         Item? GetItemByID(Guid itemId);

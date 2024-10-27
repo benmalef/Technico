@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Technico;
 
 #nullable disable
 
 namespace Technico.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241025120738_M1")]
+    [Migration("20241027080453_M1")]
     partial class M1
     {
         /// <inheritdoc />
@@ -24,15 +25,17 @@ namespace Technico.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Tecnico.Models.Item", b =>
+            modelBuilder.Entity("Technico.Models.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("E9")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uniqueidentifier");
@@ -45,12 +48,15 @@ namespace Technico.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("E9")
+                        .IsUnique();
+
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Owner", b =>
+            modelBuilder.Entity("Technico.Models.Owner", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,6 +74,9 @@ namespace Technico.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
@@ -83,27 +92,29 @@ namespace Technico.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("VAT")
+                        .IsUnique();
+
                     b.ToTable("Owners");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Repair", b =>
+            modelBuilder.Entity("Technico.Models.Repair", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(8, 2)
+                        .HasColumnType("decimal(8,2)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ItemId")
@@ -122,9 +133,9 @@ namespace Technico.Migrations
                     b.ToTable("Repairs");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Item", b =>
+            modelBuilder.Entity("Technico.Models.Item", b =>
                 {
-                    b.HasOne("Tecnico.Models.Owner", "Owner")
+                    b.HasOne("Technico.Models.Owner", "Owner")
                         .WithMany("Items")
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -133,21 +144,21 @@ namespace Technico.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Repair", b =>
+            modelBuilder.Entity("Technico.Models.Repair", b =>
                 {
-                    b.HasOne("Tecnico.Models.Item", "Item")
+                    b.HasOne("Technico.Models.Item", "Item")
                         .WithMany("Repairs")
                         .HasForeignKey("ItemId");
 
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Item", b =>
+            modelBuilder.Entity("Technico.Models.Item", b =>
                 {
                     b.Navigation("Repairs");
                 });
 
-            modelBuilder.Entity("Tecnico.Models.Owner", b =>
+            modelBuilder.Entity("Technico.Models.Owner", b =>
                 {
                     b.Navigation("Items");
                 });

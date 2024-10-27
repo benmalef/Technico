@@ -8,7 +8,7 @@ using Technico.Repositories;
 
 namespace Technico.Services;
 
-internal class ItemService
+public class ItemService
 {
     private readonly IItemRepository itemRepository ;
   
@@ -40,7 +40,7 @@ internal class ItemService
     {
         return itemRepository?.GetItemByID(id)?.Repairs;
     }
-
+  
     //public Item createItemWithVAT()
 
 }

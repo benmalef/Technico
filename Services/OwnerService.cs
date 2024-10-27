@@ -12,15 +12,19 @@ namespace Technico.Services;
 public class OwnerService
 {
     private readonly IOwnerRepository ownerRepository;
+    private readonly ItemService itemService;
 
-    public OwnerService(IOwnerRepository ownerRepository)
+    public OwnerService(IOwnerRepository ownerRepository, ItemService itemService)
     {
         this.ownerRepository = ownerRepository;
+        this.itemService = itemService;
     }
 
     public void createOwner(Owner owner)
     {
+        if (GetOwnerByVAT(owner.VAT) == null) { 
         ownerRepository.InsertOwner(owner);
+        }
     }
     public bool deleteOwnerById(Guid id)
     {
@@ -36,35 +40,46 @@ public class OwnerService
     {
         return ownerRepository?.GetOwnerByID(id);
     }
- 
-    //private bool isVATexists(int VAT)
-    //{
-    //    if (ownerRepository.GetOwnerByVAT(VAT) == null)
-    //    {
-    //        return false;
-    //    }
-    //    return true;
-    //}
+
+  
     public List<Item>? getOwnerItemsById(Guid id)
     {
         return ownerRepository?.GetOwnerByID(id)?.Items;
     }
     //VAT
-    public Owner GetOwnerByVAT(int VAT)
+    public Owner? GetOwnerByVAT(int VAT)
     {
-        return getAllOwners().Single(owner => owner.VAT == VAT);
+        try
+        {
+            return getAllOwners().Single(owner => owner.VAT == VAT);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     public List<Item>? displayOwnerItemsByVAT(int VAT)
     {
-       return GetOwnerByVAT(VAT).Items;
+        var owner = GetOwnerByVAT(VAT);
+        if (owner != null)
+        {
+            return ownerRepository?.GetOwnerItems(owner.Id)?.Items;
+        }
+        return null;
+
     }
 
-    public List<Item>? displayOwnerRepairsByVAT(int VAT)
+    public List<Repair>? displayOwnerRepairsByVAT(int VAT)
     {
         //FIX IT 
-        return GetOwnerByVAT(VAT).Items;
-   
+        var owner = GetOwnerByVAT(VAT);
+        if (owner != null)
+        {
+            return ownerRepository?.GetOwnerRepairs(owner.Id);
+        }
+        return null;
+
     }
 }
 

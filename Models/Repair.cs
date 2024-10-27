@@ -18,6 +18,12 @@ public class Repair
     [Precision(8, 2)]
     public decimal Cost { get; set; }
     public StatusOfRepair Status { get; set; }
-    public Item? Item { get; set; }
+
+    public  Item? Item { get; set; }
+
+    public override string? ToString()
+    {
+        return $"Repairid;{Id}";
+    }
 }
 

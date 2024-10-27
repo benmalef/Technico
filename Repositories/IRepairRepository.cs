@@ -7,7 +7,7 @@ using Technico.Models;
 
 namespace Technico.Repositories
 {
-    internal interface IRepairRepository
+    public interface IRepairRepository
     {
         IEnumerable<Repair> GetRepairs();
         Repair? GetRepairByID(Guid repairId);
