@@ -17,7 +17,7 @@ public class Owner
     public int? Phone { get; set; }
     public string? Email { get; set; }
     public string? Password { get; set; }
-    public Users TypeOfUser { get; set; }
+    public Users? TypeOfUser { get; set; }
 
     
     public  List<Item>? Items { get; set; }
