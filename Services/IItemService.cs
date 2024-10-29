@@ -5,7 +5,7 @@ namespace Technico.Services
 {
     public interface IItemService
     {
-        void Create(Item item);
+        void CreateItem(Item item);
         bool DeleteItemByE9(int E9);
         List<Repair>? GetAllRepairs(Guid id);
         Item GetItemByE9(int E9);

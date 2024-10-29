@@ -25,12 +25,19 @@ public class OwnerService : IOwnerService
 
     public void CreateOwner(Owner owner)
     {
-        if (!string.IsNullOrEmpty(owner.VAT))
+        try
         {
-            if (GetOwnerByVAT(owner.VAT) == null)
+            if (!string.IsNullOrEmpty(owner.VAT))
             {
-                ownerRepository.InsertOwner(owner);
+                if (GetOwnerByVAT(owner.VAT) == null)
+                {
+                    ownerRepository.InsertOwner(owner);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
     public bool DeleteOwnerById(Guid id)
@@ -99,6 +106,14 @@ public class OwnerService : IOwnerService
         {
             return null;
         }
+    }
+
+    public bool DeleteOwnerByVAT(string VAT)
+    {
+        var owner = GetOwnerByVAT(VAT);
+        if (owner == null) return false;
+        return ownerRepository.Delete(owner.Id);
+
     }
 
     public List<Item>? GetOwnerItemsByVAT(string VAT)

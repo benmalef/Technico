@@ -63,5 +63,11 @@ public class RepairService : IRepairService
             repairRepository.UpdateRepair(repair);
         }
     }
-
+   public void displayRepairsList(List<Repair> reapairs)
+    {
+        foreach (var repair in reapairs)
+        {
+            Console.WriteLine(repair.ToString());
+        }
+    }
 }

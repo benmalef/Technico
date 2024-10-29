@@ -20,9 +20,16 @@ public class ItemService : IItemService
         this.itemRepository = itemRepository;
     }
 
-    public void Create(Item item)
+    public void CreateItem(Item item)
     {
-        itemRepository.InsertItem(item);
+        try
+        {
+            itemRepository.InsertItem(item);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 
     public Item GetItemByE9(int E9)
@@ -70,5 +77,11 @@ public class ItemService : IItemService
             itemRepository.UpdateItem(item);
         }
     }
-
+    public void displayListItems(List<Item> items)
+    {
+        foreach (var item in items)
+        {
+            Console.WriteLine(item);
+        }
+    }
 }

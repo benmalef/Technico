@@ -21,8 +21,8 @@ public class Item
 
     public override string? ToString()
     {
-        return $"E9:{E9}" +
-            $"Owner Name:{Owner.Name}+" +
-            $"ID:{Id}";
+        return $"E9:{E9} \n" +
+            $"Owner Name:{Owner.Name}\n" +
+            $"ID:{Id}\n";
     }
 }
