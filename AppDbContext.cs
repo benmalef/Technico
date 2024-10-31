@@ -17,7 +17,7 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
-        string connectionString = "Server=localhost;Database=TechnicoΤest;Trusted_Connection=True; TrustServerCertificate=True;;";
+        string connectionString = "Server=localhost;Database=Technico;Trusted_Connection=True; TrustServerCertificate=True;;";
         optionsBuilder.UseSqlServer(connectionString);
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
