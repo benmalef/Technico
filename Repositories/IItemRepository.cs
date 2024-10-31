@@ -11,9 +11,9 @@ namespace Technico.Repositories
     {
         IEnumerable<Item> GetItems();
         Item? GetItemByID(Guid itemId);
-        void InsertItem(Item item);
+        Item InsertItem(Item item);
         bool DeleteById(Guid itemId);
-        void UpdateItem(Item item);
+        Item UpdateItem(Item item);
         
     }
 }

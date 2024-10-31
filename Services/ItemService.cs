@@ -20,15 +20,16 @@ public class ItemService : IItemService
         this.itemRepository = itemRepository;
     }
 
-    public void CreateItem(Item item)
+    public Item CreateItem(Item item)
     {
         try
         {
-            itemRepository.InsertItem(item);
+            return itemRepository.InsertItem(item);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
+            return null;
         }
     }
 
@@ -50,7 +51,7 @@ public class ItemService : IItemService
         return itemRepository?.GetItemByID(id)?.Repairs;
     }
 
-    public void UpdateItemByE9(int E9, string? address = null,
+    public Item UpdateItemByE9(int E9, string? address = null,
                                      int? yearOfConstruction = null,
                                       TypeOfItem? typeOfItem = null,
                                       Owner? owner = null,
@@ -74,8 +75,9 @@ public class ItemService : IItemService
             if (newE9.HasValue)
                 item.E9 = newE9.Value;
 
-            itemRepository.UpdateItem(item);
+            return itemRepository.UpdateItem(item);
         }
+        return null;
     }
     public void displayListItems(List<Item> items)
     {

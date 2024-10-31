@@ -18,11 +18,4 @@ public class Item
     public TypeOfItem? TypeOfItem { get; set; }
     public  List<Repair>? Repairs { get; set; }
 
-
-    public override string? ToString()
-    {
-        return $"E9:{E9} \n" +
-            $"Owner Name:{Owner.Name}\n" +
-            $"ID:{Id}\n";
-    }
 }

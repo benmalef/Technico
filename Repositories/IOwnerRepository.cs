@@ -12,9 +12,9 @@ public interface IOwnerRepository
 {
     IEnumerable<Owner> GetOwners();
     Owner? GetOwnerByID(Guid ownerId);
-    void InsertOwner(Owner owner);
+    Owner InsertOwner(Owner owner);
     bool Delete(Guid ownerId);
-    void UpdateOwner(Owner owner);
+    Owner UpdateOwner(Owner owner);
     public Owner? GetOwnerItems(Guid ownerId);
     public List<Repair> GetOwnerRepairs(Guid ownerId);
 }

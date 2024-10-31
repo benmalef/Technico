@@ -4,7 +4,7 @@ namespace Technico.Services
 {
     public interface IOwnerService
     {
-        void CreateOwner(Owner owner);
+        Owner CreateOwner(Owner owner);
         bool DeleteOwnerById(Guid id);
         List<Owner> GetAllOwners();
         Owner? GetOwnerById(Guid id);
@@ -13,6 +13,6 @@ namespace Technico.Services
         List<Item>? GetOwnerItemsByVAT(string VAT);
         List<Repair>? GetOwnerRepairsByVAT(string VAT);
         public bool DeleteOwnerByVAT(string VAT);
-        void UpdateOwner(string VAT, string? name = null, string? surname = null, string? address = null, int? phone = null, string? email = null, string? password = null, string? newVAT = null);
+        Owner UpdateOwner(string VAT, string? name = null, string? surname = null, string? address = null, int? phone = null, string? email = null, string? password = null, string? newVAT = null);
     }
 }

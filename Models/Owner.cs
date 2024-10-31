@@ -19,13 +19,6 @@ public class Owner
     public string? Password { get; set; }
     public Users? TypeOfUser { get; set; }
 
-    
-    public  List<Item>? Items { get; set; }
 
-
-
-    public override string? ToString()
-    {
-        return $"owner name:{Name}";
-    }
+    public List<Item>? Items { get; set; }
 }

@@ -35,17 +35,18 @@ namespace Technico.Repositories
             return context.Owners;
         }
 
-        public void InsertOwner(Owner owner)
+        public Owner InsertOwner(Owner owner)
         {
             context.Owners.Add(owner);
             context.SaveChanges();
+            return owner;
         }
 
-        public void UpdateOwner(Owner owner)
+        public Owner UpdateOwner(Owner owner)
         {
             context.Owners.Update(owner);
             context.SaveChanges();
-
+            return owner;
         }
         public Owner? GetOwnerItems(Guid ownerId)
         {

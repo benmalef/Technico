@@ -5,7 +5,7 @@ namespace Technico.Services
 {
     public interface IRepairService
     {
-        void CreateRepair(Repair repair);
+        Repair CreateRepair(Repair repair);
         bool DeleteRepairById(Guid id);
         Repair? GetRepairById(Guid id);
         public void displayRepairsList(List<Repair> reapairs);

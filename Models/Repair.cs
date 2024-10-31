@@ -21,9 +21,5 @@ public class Repair
 
     public  Item? Item { get; set; }
 
-    public override string? ToString()
-    {
-        return $"Repairid;{Id}";
-    }
 }
 

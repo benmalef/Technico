@@ -26,15 +26,17 @@ public class RepairRepository : IRepairRepository
         return context.Repairs;
     }
 
-    public void InsertRepair(Repair repair)
+    public Repair InsertRepair(Repair repair)
     {
         context.Repairs.Add(repair);
         context.SaveChanges();
+        return repair;
     }
 
-    public void UpdateRepair(Repair repair)
+    public Repair UpdateRepair(Repair repair)
     {
         context.Repairs.Update(repair);
         context.SaveChanges();
+        return repair;
     }
 }

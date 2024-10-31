@@ -18,9 +18,9 @@ public class RepairService : IRepairService
         this.repairRepository = repairRepository;
     }
 
-    public void CreateRepair(Repair repair)
+    public Repair CreateRepair(Repair repair)
     {
-        repairRepository.InsertRepair(repair);
+       return repairRepository.InsertRepair(repair);
     }
     public bool DeleteRepairById(Guid id)
     {
@@ -63,7 +63,7 @@ public class RepairService : IRepairService
             repairRepository.UpdateRepair(repair);
         }
     }
-   public void displayRepairsList(List<Repair> reapairs)
+   public void displayRepairsList(List<Repair> reapairs) 
     {
         foreach (var repair in reapairs)
         {

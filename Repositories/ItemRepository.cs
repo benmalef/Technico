@@ -32,15 +32,17 @@ public class ItemRepository : IItemRepository
         return context.Items.FirstOrDefault(item => itemId == item.Id);
     }
 
-    public void InsertItem(Item item)
+    public Item InsertItem(Item item)
     {
-        context.Items.Add(item);
+        var item1 = context.Items.Add(item);
         context.SaveChanges();
+        return item;
     }
 
-    public void UpdateItem(Item item)
+    public Item UpdateItem(Item item)
     {
         context.Items.Update(item);
         context.SaveChanges();
+        return item;
     }
 }

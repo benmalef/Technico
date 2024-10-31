@@ -23,7 +23,7 @@ public class OwnerService : IOwnerService
         this.itemService = itemService;
     }
 
-    public void CreateOwner(Owner owner)
+    public Owner CreateOwner(Owner owner)
     {
         try
         {
@@ -31,13 +31,16 @@ public class OwnerService : IOwnerService
             {
                 if (GetOwnerByVAT(owner.VAT) == null)
                 {
-                    ownerRepository.InsertOwner(owner);
+                   return ownerRepository.InsertOwner(owner);
                 }
+                
             }
+            return null;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+            return null;
         }
     }
     public bool DeleteOwnerById(Guid id)
@@ -45,7 +48,7 @@ public class OwnerService : IOwnerService
         return ownerRepository.Delete(id);
     }
 
-    public void UpdateOwner(string VAT,
+    public Owner UpdateOwner(string VAT,
                             string? name = null, string? surname = null,
                             string? address = null, int? phone = null,
                             string? email = null, string? password = null,
@@ -76,8 +79,9 @@ public class OwnerService : IOwnerService
             if (!string.IsNullOrEmpty(newVAT))
                 owner.VAT = newVAT;
 
-            ownerRepository.UpdateOwner(owner);
+           return ownerRepository.UpdateOwner(owner);
         }
+        return null;
     }
     public List<Owner> GetAllOwners()
     {

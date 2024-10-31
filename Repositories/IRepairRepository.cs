@@ -11,9 +11,9 @@ namespace Technico.Repositories
     {
         IEnumerable<Repair> GetRepairs();
         Repair? GetRepairByID(Guid repairId);
-        void InsertRepair(Repair repair);
+        Repair InsertRepair(Repair repair);
         bool Delete(Guid repairId);
-        void UpdateRepair(Repair repair);
+        Repair UpdateRepair(Repair repair);
     }
 }
 

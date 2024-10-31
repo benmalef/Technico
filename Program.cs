@@ -5,7 +5,7 @@ using Technico.Services;
 using Technico.Models;
 using Technico.Repositories;
 using Microsoft.EntityFrameworkCore;
-using com.sun.source.doctree;
+
 
 
 
@@ -39,7 +39,7 @@ var owner = new Owner
 };
 
 // Insert the owner to the database
-ownerService.CreateOwner(owner);
+var owner1 = ownerService.CreateOwner(owner);
 
 // Find the owner by VAT that the item belongs 
 owner = ownerService.GetOwnerByVAT(owner.VAT);
@@ -78,30 +78,25 @@ repairService.CreateRepair(repair);
 //------Display the owner's details, items, repairs --------
 
 //Display  the owner's details, you should provide the owner VAT
-Console.WriteLine("Owner Details");
-Console.WriteLine(ownerService.GetOwnerByVAT("1133")?.ToString());
+ownerService.GetOwnerByVAT("1133");
 
 //Display all the owner's items
 var ownerItems = ownerService.GetOwnerItemsByVAT("1133");
-itemService.displayListItems(ownerItems);
 
 //Display all the owner's repairs 
 var ownerRepairs = ownerService.GetOwnerRepairsByVAT("1133");
-repairService.displayRepairsList(ownerRepairs);
+
 
 //------Update Operation----------
 
 //Update the owner details. 
 //Update the onwer name and email
-Console.WriteLine(ownerService.GetOwnerByVAT("1133")?.ToString()); //previous values
 ownerService.UpdateOwner("1133", name: "George");
-Console.WriteLine(ownerService.GetOwnerByVAT("1133")?.ToString()); //updated values
+
 
 //Update the item details
 //Update the item(E9:12345) year of construction
-Console.WriteLine(itemService.GetItemByE9(12345).ToString()); //previous values
 itemService.UpdateItemByE9(12345, yearOfConstruction: 1010);
-Console.WriteLine(itemService.GetItemByE9(12345).ToString()); //updated values
 
 //Update the repair details
 //We should find the repair id. 
@@ -109,12 +104,12 @@ var repairs = itemService.GetItemByE9(12345)?.Repairs;
 //Update the first repair status of the list
 repairService.UpdateRepair(repairs[0].Id, status: StatusOfRepair.Complete);
 
-//------Delete Operation----------
+//------Delete Operation---------- please uncomment to test it 
 //Delete an owner
-ownerService.DeleteOwnerByVAT("1133");
+//ownerService.DeleteOwnerByVAT("1133");
 
-//Delete a repair 
-repairService.DeleteRepairById(repairs[0].Id);
+////Delete a repair 
+//repairService.DeleteRepairById(repairs[0].Id);
 
 
 
